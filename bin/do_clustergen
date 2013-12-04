@@ -12,7 +12,7 @@
 ##  permit persons to whom this work is furnished to do so, subject to   ##
 ##  the following conditions:                                            ##
 ##   1. The code must retain the above copyright notice, this list of    ##
-##      conditions and the following disclaimer.                         ##
+
 ##   2. Any modifications must be clearly marked as such.                ##
 ##   3. Original authors' names are not deleted.                         ##
 ##   4. The authors' names are not used to endorse or promote products   ##
@@ -216,9 +216,9 @@ then
    do
       fname=$i
       echo $fname "COMBINE_COEFFS (f0,mcep_static,v)"
-      $ESTDIR/bin/ch_track -otype ascii f0/$fname.f0 |
-      awk '{if (NR == 1) { print $1; print $1} print $1}' >$CG_TMP.f0
-#      cp -p tempo/$fname.f0 $CG_TMP.f0
+#      $ESTDIR/bin/ch_track -otype ascii f0/$fname.f0 |
+      awk '{if (NR == 1) { print $1; print $1} print $1}' $fname.f0.dat >$CG_TMP.f0
+#      cp -p tempoas/$fname.f0 $CG_TMP.f0
 #      if [ -f ehmm/feat/$fname.vp ]
 #      then 
 #         sed 1d ehmm/feat/$fname.vp >$CG_TMP.vu
@@ -278,9 +278,9 @@ then
          enddur=`$ESTDIR/bin/ch_track -otype est_ascii mcep_deltas/$fname.mcep | awk '{time=$1} END {printf("%0.3f",time)}'`
       fi
 
-      $ESTDIR/bin/ch_track -otype ascii f0/$fname.f0 |
-      awk '{if (NR == 1) { print $1; print $1} print $1}' >$CG_TMP.f0
-
+#      $ESTDIR/bin/ch_track -otype ascii f0/$fname.f0 |
+#      awk '{if (NR == 1) { print $1; print $1} print $1}' $fname.f0.dat >$CG_TMP.f0
+      cp f0/$fname.f0.dat2 $CG_TMP.f0
       $ESTDIR/bin/ch_track -otype ascii mcep_deltas/$fname.mcep |
       awk '{if (NR == 1) { print $0; } print $0}' >$CG_TMP.mcep
 
